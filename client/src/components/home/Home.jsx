@@ -48,14 +48,7 @@ export default function Home() {
   }, [dispatch]);
 
 
-
-  // const ListHeader = ({children}) => {
-  //     return (
-  //         <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
-  //             {children}
-  //         </Text>
-  //     );
-  // };
+ 
 
   return (
 
@@ -73,8 +66,6 @@ export default function Home() {
             300 Instructor & Institutions</Heading>
           <Text fontSize='xl'> Varius version have envolved over the years, sometimes by accident,
           </Text>
-          {/* <SearchBar>
-                    </SearchBar> */}
         </Box>
 
         <div>
@@ -93,7 +84,7 @@ export default function Home() {
           <Icon as={ArrowLeftIcon} onClick={(e) => handlePrevious(e)}
             className={style.icon} />
           {
-            currentCourses.map((course) => {
+            currentCourses?.map((course) => {
               if (course.status === "APPROVED" && !course.archieved) {
                 return (
                   <CourseCard
