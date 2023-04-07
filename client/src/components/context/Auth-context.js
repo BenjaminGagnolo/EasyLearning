@@ -6,6 +6,7 @@ import {
     signOut,
     sendEmailVerification,
 } from "firebase/auth";
+
 import { auth } from "../../firebase-config";
 
 export const authContext = createContext();
