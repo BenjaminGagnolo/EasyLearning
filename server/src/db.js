@@ -12,14 +12,6 @@ const sequelize = new Sequelize(
   }
 );
 
-// const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-//   host: DB_HOST,
-//   port: DB_PORT,
-//   dialect: "postgres",
-//   logging: false,
-//   native: false,
-// });
-
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -44,8 +36,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
+
 const {
   Category,
   Course,
@@ -58,12 +49,11 @@ const {
   Orderr
 } = sequelize.models;
 
-//Fermin
-//muchos a muchos
+
 User.belongsToMany(Course, { through: "User_Course", timestamps: false });
 Course.belongsToMany(User, { through: "User_Course", timestamps: false });
 
-//muchos a muchos
+
 Category.belongsToMany(Course, {
   through: "Category_Course",
   timestamps: false,
@@ -73,31 +63,29 @@ Course.belongsToMany(Category, {
   timestamps: false,
 });
 
-//TABLA REVIEWS Course y User
-//Course tiene muchos reviews
+
 Course.hasMany(Review);
-//Review pertenece a un solo curso
+
 Review.belongsTo(Course);
 User.hasOne(Review);
 Review.belongsTo(User);
 
-//ReviewPage pertenece a un solo user
+
 User.hasOne(ReviewPage);
 ReviewPage.belongsTo(User);
 
-//TABLA VIDEO
-//Course tiene muchos videos
+
+
 Course.hasMany(Video);
-//Video pertenece a un solo curso
+
 Video.belongsTo(Course);
 
-//TABLA COMMENTS
-//Video tiene muchos comentarios
+
 Video.hasMany(Comments);
-//Comentario perteneca a un solo video
+
 Comments.belongsTo(Video);
 
- //TABLA ORDERR             
+             
 User.belongsToMany(Orderr, {through: "User_Order", timestamps: false})
 Orderr.belongsToMany(User, {through: "User_Order", timestamps: false})
 
