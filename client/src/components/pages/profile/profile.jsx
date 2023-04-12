@@ -18,7 +18,7 @@ const Profile = () => {
 
   let orders = useSelector((state) => state.allOrders);
 
-  !userDB && history.push("/")
+  //!userDB && history.push("/")
 
   if (coursesCreateUser?.length > 3) {
     coursesCreateUser = coursesCreateUser?.slice(0, 3)

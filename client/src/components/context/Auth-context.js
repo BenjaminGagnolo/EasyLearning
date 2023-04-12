@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { 
+    getAuth,
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword,
     onAuthStateChanged,
@@ -32,7 +33,13 @@ export const AuthProvider = ({ children }) => {
     }
 
     const login = async (email, password) => {
-        const user = await signInWithEmailAndPassword(auth, email, password);
+        const user = await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) =>{
+            const user = userCredential.user
+        })
+        .catch((error) =>{
+            console.log("error");
+        })
     }    
 
     const logout = () => {
@@ -40,9 +47,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
-            setLoading(false);
+        onAuthStateChanged(auth, (currentUser) => {
+           
+                setUser(currentUser);
+                setLoading(false);
+           
         });
     }, [])
 

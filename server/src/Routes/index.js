@@ -12,7 +12,7 @@ const commentsVideoRouter = require("./commentsVideo");
 const ordersRouter = require("./orders");
 const adminRouter = require("./dashboardAdmin");
 
-// router.use("/postMercadoPago", postMercadoPago);
+
 
 router.use("/courses", coursesRouter);
 router.use("/users", usersRouter);
